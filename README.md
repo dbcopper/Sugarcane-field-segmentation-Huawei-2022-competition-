@@ -1,1 +1,1 @@
-# Sugarcane-field-segmentation-Huawei-competition-
+# Sugarcane field segmentation Huawei competition
