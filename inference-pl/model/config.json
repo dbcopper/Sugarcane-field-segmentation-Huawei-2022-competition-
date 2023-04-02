@@ -1,0 +1,79 @@
+{
+    "model_algorithm": "object_segmentation",
+    "model_type": "PyTorch",
+    "runtime": "python3.6",
+    "metrics": {
+        "f1": 0,
+        "accuracy": 0,
+        "precision": 0,
+        "recall": 0
+    },
+    "apis": [
+        {
+            "protocol": "http",
+            "url": "/",
+            "method": "post",
+            "request": {
+                "Content-type": "multipart/form-data",
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "input_img": {
+                            "type": "file"
+                        }
+                    },
+                    "required": [
+                        "input_img"
+                    ]
+                }
+            },
+            "response": {
+                "Content-type": "applicaton/json",
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "seg_results": {
+                            "type": "array",
+                            "items": [{
+                                "type": "object",
+                                "properties": {
+                                	"shape": {
+                                    "type": "array",
+                                    "minItems": 2,
+                                    "maxItems": 2,
+                                    "items": [{
+                                        "type": "number"
+                                    }]
+                                   },
+                                  "rle_code": {
+                                  		"type": "string"
+                                  }
+                                }
+                            }]
+                        } 
+                    },
+                    "required": [
+                        "seg_results"
+                    ]
+                }
+            }
+        }
+    ],
+    "dependencies": [
+        {
+            "installer": "pip",
+            "packages": [
+                {
+                    "package_name": "Pillow",
+                    "package_version": "8.4.0",
+                    "restraint": "EXACT"
+                },
+                {
+                    "package_name": "torchvision",
+                    "package_version": "0.11.2",
+                    "restraint": "EXACT"
+                },
+            ]
+        }
+    ]
+}
